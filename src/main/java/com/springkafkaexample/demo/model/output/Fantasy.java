@@ -9,6 +9,6 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
-@Builder
 public class Fantasy extends Common {
+    public LocalDateTime localDateTime;
 }

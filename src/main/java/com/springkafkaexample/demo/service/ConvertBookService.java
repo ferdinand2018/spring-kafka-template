@@ -1,4 +1,13 @@
 package com.springkafkaexample.demo.service;
 
-public class ConvertBookService {
+import com.springkafkaexample.demo.model.InputBooks;
+
+public interface ConvertBookService {
+
+    /**
+     * Process message
+     *
+     * @param inputBooks message
+     */
+    void processMessage(InputBooks inputBooks);
 }

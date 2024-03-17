@@ -2,15 +2,41 @@ server:
   port: 8081
 
 spring:
+  profiles:
+    active: test
+  application:
+    name: input-books
   kafka:
-    consumer:
-      bootstrap-servers: localhost:9092
+    enabled: true
+    books-consumer:
+      bootstrap: localhost:9092
       topic: input
-      auto-offset-reset: earliest
+      group: input.1
+      client-id: input.1@input-books
+      security-protocol: "PLAINTEXT"
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-    producer:
-      bootstrap-servers: localhost:9092
+      session-timeout-ms: 60000
+      heartbeat-interval-ms: 5000
+      max-poll-records: 500
+      max-poll-interval-ms: 500000
+      offset-reset: latest
+      auto-commit: false
+      parallelProps:
+        maxConcurrency: 20
+        processingOrder: UNORDERED
+        commitMode: PERIODIC_CONSUMER_ASYNCHRONOUS
+    books-producer:
+      bootstrap: localhost:9092
+      clientId: output@input-books
       topic: output
+      security-protocol: "PLAINTEXT"
+      acks: -1
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      enable-idempotence: true
+
+logging:
+  level:
+    root: INFO
+  config: logback.xml

@@ -8,7 +8,6 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
-@Builder
 public class Common {
     private long id;
     private String author;
