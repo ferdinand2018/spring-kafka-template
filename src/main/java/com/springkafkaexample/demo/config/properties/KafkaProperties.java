@@ -38,10 +38,10 @@ public class KafkaProperties {
     @Setter
     public static class ProducerDetails extends CommonDetails {
         private String acks;
-        //private String deliveryTimeoutMs;
-        //private String batchSize;
-        //private String lingerMs;
-        //private String maxInFlightRequestsPerConnection;
+        private String deliveryTimeoutMs;
+        private String batchSize;
+        private String lingerMs;
+        private String maxInFlightRequestsPerConnection;
         private String enableIdempotence;
     }
 

@@ -1,6 +1,7 @@
 package com.springkafkaexample.demo.message;
 
 import com.springkafkaexample.demo.exception.MessageValidationException;
+import com.springkafkaexample.demo.model.InputBook;
 import com.springkafkaexample.demo.model.InputBooks;
 import com.springkafkaexample.demo.service.ConvertBookService;
 import lombok.RequiredArgsConstructor;

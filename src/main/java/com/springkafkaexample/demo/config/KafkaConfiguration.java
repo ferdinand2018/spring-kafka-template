@@ -70,7 +70,7 @@ public class KafkaConfiguration {
     }
 
     @Bean
-    public KafkaTemplate<String, Object> cardsIntKafkaTemplate(ProducerFactory<String, Object> producerFactory) {
+    public KafkaTemplate<String, Object> booksKafkaTemplate(ProducerFactory<String, Object> producerFactory) {
         return new KafkaTemplate<>(producerFactory);
     }
 
@@ -143,10 +143,10 @@ public class KafkaConfiguration {
 
     private void fillPerformance(KafkaProperties.ProducerDetails details, Map<String, Object> props) {
         props.put(ProducerConfig.ACKS_CONFIG, details.getAcks());
-        /*props.put(ProducerConfig.DELIVERY_TIMEOUT_MS_CONFIG, details.getDeliveryTimeoutMs());
+        props.put(ProducerConfig.DELIVERY_TIMEOUT_MS_CONFIG, details.getDeliveryTimeoutMs());
         props.put(ProducerConfig.BATCH_SIZE_CONFIG, details.getBatchSize());
         props.put(ProducerConfig.LINGER_MS_CONFIG, details.getLingerMs());
-        props.put(ProducerConfig.MAX_IN_FLIGHT_REQUESTS_PER_CONNECTION, details.getMaxInFlightRequestsPerConnection());*/
+        props.put(ProducerConfig.MAX_IN_FLIGHT_REQUESTS_PER_CONNECTION, details.getMaxInFlightRequestsPerConnection());
         props.put(ProducerConfig.ENABLE_IDEMPOTENCE_CONFIG, details.getEnableIdempotence());
     }
 

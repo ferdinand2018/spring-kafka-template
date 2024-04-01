@@ -1,12 +1,13 @@
-package com.springkafkaexample.demo.model.output;
+package com.springkafkaexample.demo.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.springkafkaexample.demo.enums.Genre;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
-
 import javax.validation.Valid;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Objects;
@@ -17,7 +18,7 @@ import java.util.Objects;
 @Getter
 @Setter
 @Builder
-public class Story implements Serializable {
+public class InputBook implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -30,42 +31,47 @@ public class Story implements Serializable {
     @JsonProperty("bookName")
     private String bookName;
 
+    @JsonProperty("genre")
+    private Genre genre;
+
     @JsonProperty("created")
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     @Valid
     @Builder.Default
     private LocalDateTime created = null;
 
-    public Story() {
-        super();
-    }
-
-    public Story(long id, String author, String bookName, LocalDateTime created) {
+    public InputBook(long id, String author, String bookName, Genre genre, LocalDateTime created) {
         this.id = id;
         this.author = author;
         this.bookName = bookName;
+        this.genre = genre;
         this.created = created;
+    }
+
+    public InputBook() {
+        super();
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Story story = (Story) o;
-        return id == story.id && Objects.equals(author, story.author) && Objects.equals(bookName, story.bookName) && Objects.equals(created, story.created);
+        InputBook inputBook = (InputBook) o;
+        return id == inputBook.id && Objects.equals(author, inputBook.author) && Objects.equals(bookName, inputBook.bookName) && genre == inputBook.genre && Objects.equals(created, inputBook.created);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, author, bookName, created);
+        return Objects.hash(id, author, bookName, genre, created);
     }
 
     @Override
     public String toString() {
-        return "Story{" +
+        return "InputBook{" +
                 "id=" + id +
                 ", author='" + author + '\'' +
                 ", bookName='" + bookName + '\'' +
+                ", genre=" + genre +
                 ", created=" + created +
                 '}';
     }

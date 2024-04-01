@@ -28,12 +28,16 @@ spring:
         commitMode: PERIODIC_CONSUMER_ASYNCHRONOUS
     books-producer:
       bootstrap: localhost:9092
-      clientId: output@input-books
+      client-id: output@input-books
       topic: output
       security-protocol: "PLAINTEXT"
       acks: -1
-      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+#      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+#      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      delivery-timeout-ms: 90000
+      batch-size: 10240
+      linger-ms: 100
+      maxIn-flight-requests-per-connection: 5
       enable-idempotence: true
 
 logging:
